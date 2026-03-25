@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.aulasandroid.quizatron.screens.menu.MenuScreen
+import com.aulasandroid.quizatron.screens.quiz.QuizScreen
+import com.aulasandroid.quizatron.screens.result.ResultScreen
 import com.aulasandroid.quizatron.ui.theme.QuizatronTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,9 +23,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             QuizatronTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MenuScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+//                    MenuScreen( modifier = Modifier.padding(innerPadding))
+                    QuizScreen(modifier = Modifier.padding(innerPadding))
+//                    ResultScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

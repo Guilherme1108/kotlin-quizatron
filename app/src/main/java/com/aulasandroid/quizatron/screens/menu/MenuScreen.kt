@@ -1,12 +1,17 @@
 package com.aulasandroid.quizatron.screens.menu
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,35 +34,43 @@ fun MenuScreen(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(206, 125, 52, 255)),
+            .background(Color(98, 219, 251, 255))
+            .padding(64.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             modifier = Modifier
-                .size(64.dp),
-            painter = painterResource(R.drawable.ic_android_black_24dp),
-            contentDescription = "Nave",
-            colorFilter = ColorFilter.tint(Color.White)
+                .size(200.dp),
+            painter = painterResource(R.drawable.quiz),
+            contentDescription = "Logo"
         )
 
+        Spacer(modifier = Modifier.height(42.dp))
+
         Text(
-            text = "QUIZATRON 3000"
+            text = "QUIZATRON 3000",
+            fontSize = 32.sp
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
 
         Button(
             modifier = Modifier
-                .fillMaxWidth(),
+                .width(250.dp)
+                .height(64.dp),
             onClick = {},
+            border = BorderStroke(1.dp, Color.Black),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Yellow,
+                containerColor = Color(254,222,47),
             ),
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(32.dp)
         ) {
             Text(
-                text = "Calcular",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
+                text = "Começar!",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
             )
         }
 
