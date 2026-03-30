@@ -30,12 +30,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aulasandroid.quizatron.R
 import com.aulasandroid.quizatron.components.CardQuiz
 import com.aulasandroid.quizatron.components.OptionQuiz
 
 @Composable
-fun QuizScreen(modifier: Modifier = Modifier) {
+fun QuizScreen(modifier: Modifier = Modifier, navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -74,7 +75,7 @@ fun QuizScreen(modifier: Modifier = Modifier) {
             )
         }
 
-        CardQuiz()
+        CardQuiz(navController)
 
 
     }

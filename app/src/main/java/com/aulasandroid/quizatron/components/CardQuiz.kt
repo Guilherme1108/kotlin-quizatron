@@ -20,11 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aulasandroid.quizatron.screens.quiz.QuizScreenViewModel
 //import java.lang.reflect.Modifier
 
 @Composable
-fun CardQuiz() {
+fun CardQuiz(navController: NavController) {
 
     val viewModel = QuizScreenViewModel()
 
@@ -47,14 +48,22 @@ fun CardQuiz() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
+            val perguntaAtualIndex by viewModel.perguntaAtualIndex
+            val pergunta = viewModel.perguntas[perguntaAtualIndex]
 
-            val pergunta = viewModel.perguntas[perguntaAtual]
+            var acertos = 0
 
             Question(pergunta.pergunta)
 
             pergunta.opcoes.forEach { opcao ->
-                OptionQuiz(opcao.text, opcao.value)
+                OptionQuiz(opcao.text, opcao.value, opcaoSelecionada = {viewModel.proximaPergunta(navController)})
+
+                if (opcao.value == true) {
+                    acertos++
+                }
             }
+
+
 
         }
 

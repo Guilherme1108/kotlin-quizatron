@@ -26,10 +26,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aulasandroid.quizatron.R
 
 @Composable
-fun ResultScreen(modifier: Modifier = Modifier) {
+fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
 
     Column(modifier = modifier
         .fillMaxSize(),
@@ -87,7 +88,9 @@ fun ResultScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .width(300.dp)
                 .height(64.dp),
-            onClick = {},
+            onClick = {
+                navController.navigate("menu")
+            },
             border = BorderStroke(1.dp, Color.Black),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(254,222,47),

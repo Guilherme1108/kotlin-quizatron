@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun Question(question: String) {
     Text(
-        text = "Se o inimigo cura muito, qual item fazer?",
+        text = question,
         fontSize = 24.sp
     )
 }
