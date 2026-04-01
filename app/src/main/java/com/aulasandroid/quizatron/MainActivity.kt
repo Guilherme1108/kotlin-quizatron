@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aulasandroid.quizatron.screens.menu.MenuScreen
+import com.aulasandroid.quizatron.screens.menu.MenuScreenViewModel
 import com.aulasandroid.quizatron.screens.quiz.QuizScreen
 import com.aulasandroid.quizatron.screens.quiz.QuizScreenViewModel
 import com.aulasandroid.quizatron.screens.result.ResultScreen
@@ -36,7 +37,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = "menu") {
                             MenuScreen(
                                 modifier = Modifier.padding((innerPadding)),
-                                navController = navController
+                                navController = navController,
+                                menuScreenViewModel = MenuScreenViewModel()
                             )
                         }
 

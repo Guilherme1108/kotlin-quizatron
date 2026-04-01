@@ -86,7 +86,7 @@ fun ResultScreen(modifier: Modifier = Modifier, navController: NavController, po
                     )
                 } else {
                     Text(
-                        text = "Aceitável.",
+                        text = "Parabéns!",
                         fontSize = 28.sp
                     )
                 }

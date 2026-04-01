@@ -35,7 +35,7 @@ fun CardQuiz(navController: NavController, quizScreenViewModel: QuizScreenViewMo
             .fillMaxWidth()
             .padding(horizontal = 12.dp, vertical = 32.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White
+            containerColor = Color(255, 255, 255, 191)
         ),
         elevation = CardDefaults.cardElevation(8.dp),
     ) {

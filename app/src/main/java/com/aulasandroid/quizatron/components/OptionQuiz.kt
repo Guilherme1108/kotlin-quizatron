@@ -23,7 +23,7 @@ fun OptionQuiz(
 ){
     var selecionado by remember(text) { mutableStateOf(false) }
 
-    var fundoBotao = when{
+    val fundoBotao = when{
         !selecionado -> Color.Transparent
         value -> Color.Green
         else -> Color.Red
