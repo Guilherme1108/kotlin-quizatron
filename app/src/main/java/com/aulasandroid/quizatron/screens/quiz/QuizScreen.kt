@@ -23,6 +23,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,7 +37,11 @@ import com.aulasandroid.quizatron.components.CardQuiz
 import com.aulasandroid.quizatron.components.OptionQuiz
 
 @Composable
-fun QuizScreen(modifier: Modifier = Modifier, navController: NavController) {
+fun QuizScreen(modifier: Modifier = Modifier, navController: NavController, quizScreenViewModel: QuizScreenViewModel) {
+
+    val perguntaAtualIndex by quizScreenViewModel.perguntaAtualIndex
+    val pergunta = quizScreenViewModel.perguntas[perguntaAtualIndex]
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -70,12 +75,12 @@ fun QuizScreen(modifier: Modifier = Modifier, navController: NavController) {
 
         ) {
             Text(
-                text = "Pergunta 1 de 3",
+                text = "Pergunta ${pergunta.id} de 3",
                 fontSize = 28.sp
             )
         }
 
-        CardQuiz(navController)
+        CardQuiz(navController, quizScreenViewModel, pergunta)
 
 
     }

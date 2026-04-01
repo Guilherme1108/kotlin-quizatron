@@ -3,6 +3,7 @@ package com.aulasandroid.quizatron.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,12 @@ fun OptionQuiz(
 ){
     var selecionado by remember(text) { mutableStateOf(false) }
 
+    var fundoBotao = when{
+        !selecionado -> Color.Transparent
+        value -> Color.Green
+        else -> Color.Red
+    }
+
     OutlinedButton(
         onClick = {
             if (!selecionado) {
@@ -33,6 +40,7 @@ fun OptionQuiz(
             .fillMaxWidth()
             .height(48.dp),
         shape = RoundedCornerShape(8.dp),
+        colors = ButtonDefaults.buttonColors(fundoBotao)
     ) {
         Text(
             text = text,

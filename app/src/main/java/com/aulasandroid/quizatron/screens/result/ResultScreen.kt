@@ -30,7 +30,7 @@ import androidx.navigation.NavController
 import com.aulasandroid.quizatron.R
 
 @Composable
-fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
+fun ResultScreen(modifier: Modifier = Modifier, navController: NavController, pontos: Int) {
 
     Column(modifier = modifier
         .fillMaxSize(),
@@ -69,14 +69,32 @@ fun ResultScreen(modifier: Modifier = Modifier, navController: NavController) {
                 horizontalArrangement = Arrangement.Center,
 
                 ) {
-                Text(
-                    text = "Bom Trabalho!",
-                    fontSize = 28.sp
-                )
+                if (pontos == 0) {
+                    Text(
+                        text = "Eu teria vergonha!",
+                        fontSize = 28.sp
+                    )
+                } else if (pontos == 1) {
+                    Text(
+                        text = "Péssimo!",
+                        fontSize = 28.sp
+                    )
+                } else if (pontos == 2) {
+                    Text(
+                        text = "Quase lá!",
+                        fontSize = 28.sp
+                    )
+                } else {
+                    Text(
+                        text = "Aceitável.",
+                        fontSize = 28.sp
+                    )
+                }
+
             }
 
             Text(
-                text = "Você acertou 1 de 3 perguntas",
+                text = "Você acertou ${pontos} de 3 perguntas",
                 fontSize = 28.sp
             )
 

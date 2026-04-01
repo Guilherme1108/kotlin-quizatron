@@ -25,9 +25,8 @@ import com.aulasandroid.quizatron.screens.quiz.QuizScreenViewModel
 //import java.lang.reflect.Modifier
 
 @Composable
-fun CardQuiz(navController: NavController) {
+fun CardQuiz(navController: NavController, quizScreenViewModel: QuizScreenViewModel, pergunta: QuizScreenViewModel.Pergunta) {
 
-    val viewModel = QuizScreenViewModel()
 
     Card(
         modifier = Modifier
@@ -48,19 +47,21 @@ fun CardQuiz(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            val perguntaAtualIndex by viewModel.perguntaAtualIndex
-            val pergunta = viewModel.perguntas[perguntaAtualIndex]
-
-            var acertos = 0
 
             Question(pergunta.pergunta)
 
             pergunta.opcoes.forEach { opcao ->
-                OptionQuiz(opcao.text, opcao.value, opcaoSelecionada = {viewModel.proximaPergunta(navController)})
+                OptionQuiz(opcao.text, opcao.value, opcaoSelecionada = {
 
-                if (opcao.value == true) {
-                    acertos++
-                }
+                    if (opcao.value) {
+                        quizScreenViewModel.adicionarPontos()
+                    }
+
+                    quizScreenViewModel.proximaPergunta(navController
+
+                    )})
+
+
             }
 
 

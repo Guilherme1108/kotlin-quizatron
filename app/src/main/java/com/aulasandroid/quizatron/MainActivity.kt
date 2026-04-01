@@ -16,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aulasandroid.quizatron.screens.menu.MenuScreen
 import com.aulasandroid.quizatron.screens.quiz.QuizScreen
+import com.aulasandroid.quizatron.screens.quiz.QuizScreenViewModel
 import com.aulasandroid.quizatron.screens.result.ResultScreen
 import com.aulasandroid.quizatron.ui.theme.QuizatronTheme
 
@@ -42,19 +43,24 @@ class MainActivity : ComponentActivity() {
                         composable(route = "quiz") {
                             QuizScreen(
                                 modifier = Modifier.padding((innerPadding)),
-                                navController = navController
+                                navController = navController,
+                                quizScreenViewModel = QuizScreenViewModel()
                             )
                         }
 
-                        composable(route = "result/{acertos}",
+                        composable(route = "result/{pontos}",
                                     arguments = listOf(
-                                        navArgument("acertos") {
-                                            type = NavType.StringType
+                                        navArgument("pontos") {
+                                            type = NavType.IntType
                                         }
-                                    ) {
+                                    )){
+                                        val pontos = it.arguments?.getInt("pontos") ?: 0
+
+
                             ResultScreen(
                                 modifier = Modifier.padding((innerPadding)),
-                                navController = navController
+                                navController = navController,
+                                pontos = pontos
                             )
                         }
                     }

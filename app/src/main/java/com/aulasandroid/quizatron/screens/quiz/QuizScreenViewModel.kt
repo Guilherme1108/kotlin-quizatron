@@ -1,16 +1,14 @@
 package com.aulasandroid.quizatron.screens.quiz
 
-import android.util.Log
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.aulasandroid.quizatron.components.OptionQuiz
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class QuizScreenViewModel {
+class QuizScreenViewModel: ViewModel() {
 
     data class Opcao (
         val text: String,
@@ -18,12 +16,14 @@ class QuizScreenViewModel {
     )
 
     data class Pergunta(
+        val id: Int,
         val pergunta: String,
         val opcoes: List<Opcao>
     )
 
     private val _perguntas = listOf(
             Pergunta(
+                id = 1,
                 pergunta = "Se o inimigo cura muito, qual item fazer?",
                 opcoes = listOf(
                     Opcao("Gume do Infinito", false),
@@ -33,6 +33,7 @@ class QuizScreenViewModel {
                 )
             ),
             Pergunta(
+                id = 2,
                 pergunta = "Qual item dá velocidade de ataque?",
                 opcoes = listOf(
                     Opcao("Furacão de Runaan", true),
@@ -42,6 +43,7 @@ class QuizScreenViewModel {
                 )
             ),
             Pergunta(
+                id = 3,
                 pergunta = "Qual item é de crítico?",
                 opcoes = listOf(
                     Opcao("Gume do Infinito", true),
@@ -56,17 +58,25 @@ class QuizScreenViewModel {
     val perguntaAtualIndex: State<Int> = _perguntaAtualIndex
 
     fun proximaPergunta(navController: NavController) {
-        if (_perguntaAtualIndex.value < _perguntas.size - 1) {
-            _perguntaAtualIndex.value++
-            Log.i("teste", "${_perguntaAtualIndex.value}")
-        } else {
-            navController.navigate("result")
+        viewModelScope.launch {
+            delay(250)
+            if (_perguntaAtualIndex.value < _perguntas.size - 1) {
+                _perguntaAtualIndex.value++
+//            Log.i("teste", "${_perguntaAtualIndex.value}")
+            } else {
+                navController.navigate("result/${pontos.value}")
+            }
         }
     }
 
     val perguntas = _perguntas
 
+    private val _pontos = mutableStateOf(0)
+    val pontos: State<Int> = _pontos
 
+    fun adicionarPontos() {
+        _pontos.value++
+    }
 
 
 }
